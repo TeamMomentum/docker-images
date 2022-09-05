@@ -14,7 +14,7 @@ jobs:
           images: ghcr.io/teammomentum/protoc
           flavor: |
             latest=false
-            prefix=
+            prefix=protoc/
             suffix=
           tags: |
             type=semver,pattern={{version}}
