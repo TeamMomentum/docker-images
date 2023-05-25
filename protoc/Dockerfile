@@ -1,5 +1,5 @@
 # https://github.com/GoogleCloudPlatform/cloud-builders-community/blob/master/protoc/Dockerfile
-FROM golang AS gen_go_grpc
+FROM golang:1.16 AS gen_go_grpc
 
 ARG VER=v1.0.0
 
@@ -29,10 +29,11 @@ RUN wget "https://github.com/protocolbuffers/protobuf-go/releases/download/v${GE
     rm "protoc-gen-go.v${GEN_GO_VER}.${ARCH2}.tar.gz"
 
 RUN wget "https://github.com/grpc/grpc-web/releases/download/${GEN_GRPC_WEB}/protoc-gen-grpc-web-${GEN_GRPC_WEB}-${ARCH}" \
-      -O /protoc/bin/protoc-gen-grpc-web && \
-    chmod +x /protoc/bin/protoc-gen-grpc-web
+      -O /protoc/bin/protoc-gen-grpc-web
 
 COPY --from=gen_go_grpc /protoc-gen-go-grpc /protoc/bin/
+
+RUN chmod 755 /protoc/bin && chmod +x /protoc/bin/*
 
 ENV PATH=$PATH:/protoc/bin/
 ENTRYPOINT ["protoc"]
