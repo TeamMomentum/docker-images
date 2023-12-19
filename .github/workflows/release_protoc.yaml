@@ -17,9 +17,7 @@ jobs:
             prefix=protoc/
             suffix=
           tags: |
-            type=semver,pattern={{version}},value=v1.0.0
-            type=semver,pattern={{major}}.{{minor}},value=v1.0
-            type=semver,pattern={{major}},value=v1
+            type=semver,pattern={{version}},value=protoc/v1.0.0
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
