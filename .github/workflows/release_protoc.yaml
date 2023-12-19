@@ -14,10 +14,10 @@ jobs:
           images: ghcr.io/teammomentum/protoc
           flavor: |
             latest=false
-            prefix=protoc-
+            prefix=protoc-v
             suffix=
           tags: |
-            type=semver,pattern={{version}},value=v1.0.0
+            type=semver,pattern={{version}}
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
